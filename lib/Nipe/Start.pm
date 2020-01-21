@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 package Nipe::Start;
 
@@ -11,7 +11,6 @@ sub new {
 	my $network      = "10.66.0.0/255.255.0.0";
 
 	my $username = Nipe::Device -> getUsername();
-
 
 	if (-e "/etc/init.d/tor") {
 		system ("sudo /etc/init.d/tor start > /dev/null");

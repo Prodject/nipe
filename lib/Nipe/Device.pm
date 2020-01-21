@@ -1,30 +1,26 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 package Nipe::Device;
 
-my $operationalSystem = `awk -F= '\$1=="ID_LIKE" { print \$2 ;}' /etc/os-release`;
+use Config::Simple;
+
+my $config    = Config::Simple -> new('/etc/os-release');
+my $id_like   = $config -> param('ID_LIKE');
+my $id_distro = $config -> param('ID');
 
 sub getUsername {
 	my $username;
-
-	if ($operationalSystem =~ /[U,u]buntu/) {
-		$username = "tor";
-	}
-
-	elsif ($operationalSystem =~ /[D,d]ebian/) {
-		$username = "debian-tor";
-	}
-
-	elsif (($operationalSystem =~ /[F,f]edora/) || ($operationalSystem =~ /[C,c]entos/)) {
+	
+	if (($id_like =~ /[F,f]edora/) || ($id_distro =~ /[F,f]edora/)) {
 		$username = "toranon";
 	}
-
-	elsif ($operationalSystem =~ /[A,a]rch/) {
+	
+	elsif (($id_like =~ /[A,a]rch/) || ($id_like =~ /[C,c]entos/) || ($id_distro =~ /[A,a]rch/) || ($id_distro =~ /[C,c]entos/)) {
 		$username = "tor";
 	}
 
 	else {
-		$username = "tor";
+		$username = "debian-tor";
 	}
 
 	return $username;
@@ -33,19 +29,15 @@ sub getUsername {
 sub getSystem {
 	my $distribution;
 
-	if (($operationalSystem =~ /[U,u]buntu/) || ($operationalSystem =~ /[D,d]ebian/)) {
-		$distribution = "debian";
-	}
-
-	elsif ($operationalSystem =~ /[F,f]edora/) {
+	if (($id_like =~ /[F,f]edora/) || ($id_distro =~ /[F,f]edora/)) {
 		$distribution = "fedora";
 	}
 
-	elsif ($operationalSystem =~ /[A,a]rch/) {
+	elsif (($id_like =~ /[A,a]rch/) || ($id_distro =~ /[A,a]rch/)) {
 		$distribution = "arch";
 	}
 
-	elsif ($operationalSystem =~ /[C,c]entos/) {
+	elsif (($id_like =~ /[C,c]entos/) || ($id_distro =~ /[C,c]entos/)) {
 		$distribution = "centos"
 	}
 

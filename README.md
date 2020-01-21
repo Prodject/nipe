@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center">Nipe</h3>
+  <img src="https://heitorgouvea.me/images/publications/nipe-overview/logo.png">
   <p align="center">A script to make Tor Network your default gateway.</p>
 
   <p align="center">
@@ -7,74 +7,67 @@
       <img src="https://img.shields.io/badge/license-MIT-blue.svg">
     </a>
     <a href="https://github.com/GouveaHeitor/nipe/releases">
-      <img src="https://img.shields.io/badge/version-1.0-blue.svg">
+      <img src="https://img.shields.io/badge/version-0.9-blue.svg">
     </a>
   </p>
 </p>
 
 ---
 
+
+### How it works
 ```
-    [+] AUTOR:        Heitor Gouvêa
-    [+] SITE:         https://heitorgouvea.me
-    [+] EMAIL:        hi@heitorgouvea.me
-    [+] GITHUB:       https://github.com/GouveaHeitor
-    [+] TWITTER:      @GouveaHeitor
-```
-
-[**See complete documentation here**](https://heitorgouvea.me/nipe/)
-
-#### How it works
-
-    Tor enables users to surf the internet, chat and send instant messages
-    anonymously,  and is used by a wide variety of people for both licit and
-    illicit purposes. Tor has, for example, been used by criminals enterprises,
-    hacktivism groups, and law enforcement  agencies at cross purposes, sometimes
-    simultaneously.
-
-    Nipe is a script to make the Tor network your default gateway.
-
-    This Perl script enables you to directly route all your traffic from your
-    computer to the Tor network through which you can surf the internet anonymously
-    without having to worry about being tracked or traced back.
-
-#### Download and install:
-```
-    git clone https://github.com/GouveaHeitor/nipe
-    cd nipe
-    cpan install Switch JSON LWP::UserAgent
+  The TOR project allows users to surf the Internet, chat and send instant messages anonymously 
+  through its own mechanism. It is used by a wide variety of people, companies and organizations, 
+  both for lawful activities and for other illicit purposes. TOR is already gone and is used for 
+  example by criminal companies, hacking groups, intelligence agencies and even ordinary users who care
+  about privacy in the digital world. 
+  
+  Nipe is a engine, developed in Perl, that aims to make the TOR network your default network gateway. 
+  Through Nipe, we can directly route traffic from our computer to the TOR network through which you can 
+  surf the Internet having a more formidable stance on privacy and anonymity in cyberspace.
+  
+  Currently, only IPv4 is supported by Nipe, but we are working on a solution to add IPv6 support. 
+  Also, only traffic other than DNS requests destined for local and/or loopback addresses is not 
+  trafficked through the TOR. All non-local UDP/ICMP traffic is also blocked by the TOR project.
 ```
 
-#### Commands:
-```
-    COMMAND          FUNCTION
-    install          Install dependencies
-    start            Start routing
-    stop             Stop routing
-    restart          Restart the Nipe process
-    status           See status
 
-    Examples:
-
-    perl nipe.pl install
-    perl nipe.pl start
-    perl nipe.pl stop
-    perl nipe.pl restart
-    perl nipe.pl status
+### Download and install:
+```bash
+  # Download
+  $ git clone https://github.com/GouveaHeitor/nipe
+  $ cd nipe
+    
+  # Install libs and dependencies
+  $ sudo cpan install Switch JSON LWP::UserAgent Config::Simple
+  $ perl nipe.pl install
 ```
 
-#### Bugs
+### Commands:
+```bash
+  COMMAND          FUNCTION
+  install          Install dependencies
+  start            Start routing
+  stop             Stop routing
+  restart          Restart the Nipe process
+  status           See status
 
-- Report bugs in my email: **hi@heitorgouvea.me**
+  Examples:
 
-#### License
+  perl nipe.pl install
+  perl nipe.pl start
+  perl nipe.pl stop
+  perl nipe.pl restart
+  perl nipe.pl status
+```
 
-- This work is licensed under [**MIT License**](https://github.com/GouveaHeitor/nipe/blob/master/LICENSE.md)
+### Contribution
 
-#### Contribution
+- Your contributions and suggestions are heartily ♥ welcome. [**See here the contribution guidelines.**](/.github/CONTRIBUTING.md) Please, report bugs via [**issues page.**](https://github.com/GouveaHeitor/nipe/issues) See here the [**Security Policy.**](./github/SECURITY.md) (✿ ◕‿◕) 
 
-- Your contributions and suggestions are heartily♥ welcome. (✿◕‿◕) [**See here the contribution guidelines**](/.github/CONTRIBUTING.md)
+- Interested in better understanding how the Nipe really works? Maybe this post can help you: [**A techinical Overview about Nipe.**](https://heitorgouvea.me/2019/11/19/Nipe-Overview)
 
-#### Disclaimer
+### License
 
-I do private jobs, if you are interesting send me an e-mail at: **hi@heitorgouvea.me**
+- This work is licensed under [**MIT License.**](https://github.com/GouveaHeitor/nipe/blob/master/LICENSE.md)

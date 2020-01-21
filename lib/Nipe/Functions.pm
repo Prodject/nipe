@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 package Nipe::Functions;
 
@@ -16,8 +16,9 @@ sub help {
 		\r\trestart       Restart the Nipe process
 		\r\tstatus        See status
 
-		\rNipe developed by Heitor Gouvêa
-		\rCopyright (c) 2015-2018 Heitor Gouvêa\n\n";
+		\rCopyright (c) 2015 - 2020 | Heitor Gouvêa\n\n";
+
+	return true;
 }
 
 sub install {
@@ -29,12 +30,7 @@ sub install {
 		system ("sudo apt-get install tor iptables");
 		system ("sudo cp .configs/debian-torrc /etc/tor/torrc");
 	}
-
-	elsif ($operationalSystem eq "arch") {
-		system ("sudo pacman -S tor iptables");
-		system ("sudo cp .configs/arch-torrc /etc/tor/torrc");
-	}
-
+	
 	elsif ($operationalSystem eq "fedora") {
 		system ("sudo dnf install tor iptables");
 		system ("sudo cp .configs/fedora-torrc /etc/tor/torrc");
@@ -51,6 +47,16 @@ sub install {
 	}
 
 	system ("sudo chmod 644 /etc/tor/torrc");
+
+	if (-e "/etc/init.d/tor") {
+		system ("sudo /etc/init.d/tor stop > /dev/null");
+	}
+
+	else {
+		system ("sudo systemctl stop tor");
+	}
+
+	return true;
 }
 
 1;
